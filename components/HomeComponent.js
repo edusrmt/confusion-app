@@ -41,8 +41,7 @@ class Home extends Component {
             <ScrollView>
                 <RenderItem item={this.state.dishes.filter((dish) => dish.featured)[0]}></RenderItem>
                 <RenderItem item={this.state.promotions.filter((promo) => promo.featured)[0]}></RenderItem>
-                <RenderItem item={this.state.leaders.filter((leader) => leader.featured)[0]}></RenderItem>
-                
+                <RenderItem item={this.state.leaders.filter((leader) => leader.featured)[0]}></RenderItem>                
             </ScrollView>
         );
     }
