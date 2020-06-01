@@ -1,7 +1,7 @@
 import * as ActionTypes from './ActionTypes';
 
 export const comments = (state = {
-    errMess = null,
+    errMess: null,
     comments: []
 }, action) => {
     switch (action.type) {

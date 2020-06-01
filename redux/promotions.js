@@ -1,8 +1,8 @@
 import * as ActionTypes from './ActionTypes';
 
 export const promotions = (state = {
-    isLoading = true,
-    errMess = null,
+    isLoading: true,
+    errMess: null,
     promotions: []
 }, action) => {
     switch (action.type) {
