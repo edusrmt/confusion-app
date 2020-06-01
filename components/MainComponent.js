@@ -7,6 +7,7 @@ import { Icon } from 'react-native-elements';
 import { Image, StyleSheet, ScrollView, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { fetchDishes, fetchComments, fetchPromos, fetchLeaders } from '../redux/ActionCreators';
+import { baseUrl } from '../shared/baseUrl';
 
 const mapStateToProps = state => {
     return {}
@@ -165,7 +166,7 @@ const CustomDrawerContentComponent = (props) => (
             >
                 <View style={styles.drawerHeader}>
                     <View style={{flex: 1}}>
-                        <Image source={require('./images/logo.png')} style={styles.drawerImage} />
+                        <Image source={{ uri: baseUrl + 'images/logo.png' }} style={styles.drawerImage} />
                     </View>
                     <View style={{flex: 2}}>
                         <Text style={styles.drawerHeaderText}>Ristorante Con Fusion</Text>
