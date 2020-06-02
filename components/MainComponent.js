@@ -25,6 +25,7 @@ import Dishdetail from './DishdetailComponent';
 import Home from './HomeComponent';
 import About from './AboutComponent';
 import Contact from './ContactComponent';
+import Reservation from './ReservationComponent';
 
 const MenuNavigator = createStackNavigator();
 
@@ -157,6 +158,38 @@ function ContactNavigatorScreen() {
     );
 }
 
+const ReservationNavigator = createStackNavigator();
+
+function ReservationNavigatorScreen() {
+    return(
+        <ReservationNavigator.Navigator
+            initialRouteName='Reservation'
+            screenOptions={{
+                headerStyle: {
+                    backgroundColor: '#512DA8'
+                },
+                headerTintColor: '#fff',
+                headerTitleStyle: {
+                    color: '#fff'            
+                }
+            }}
+        >
+            <ReservationNavigator.Screen
+                name='Reservation'
+                component={Reservation}
+                options={({ navigation }) => ({
+                    headerTitle: 'Reserve Table',
+                    headerLeft: () => (
+                        <Icon name='menu' size={24} color='white' onPress={() => {
+                            navigation.toggleDrawer()
+                        }}/>
+                    )
+                })}
+            />
+        </ReservationNavigator.Navigator>
+    );
+}
+
 const CustomDrawerContentComponent = (props) => (
     <SafeAreaProvider>
         <ScrollView>
@@ -229,6 +262,17 @@ function MainNavigatorScreen() {
                     drawerLabel: 'Contact Us',
                     drawerIcon: ({ tintColor }) => (
                         <Icon name='address-card' type='font-awesome' size={22} color={tintColor} />
+                    )
+                }}
+            />
+            <MainNavigator.Screen
+                name='Reservation'
+                component={ReservationNavigatorScreen}
+                options={{
+                    headerTitle: 'Reserve Table',
+                    drawerLabel: 'Reserve Table',
+                    drawerIcon: ({ tintColor }) => (
+                        <Icon name='cutlery' type='font-awesome' size={24} color={tintColor} />
                     )
                 }}
             />
