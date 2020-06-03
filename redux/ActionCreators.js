@@ -67,8 +67,7 @@ export const addDishes = (dishes) => ({
     payload: dishes
 });
 
-export const fetchPromos = () => (dispatch) => {
-    
+export const fetchPromos = () => (dispatch) => {    
     dispatch(promosLoading());
 
     return fetch(baseUrl + 'promotions')
@@ -104,8 +103,7 @@ export const addPromos = (promos) => ({
     payload: promos
 });
 
-export const fetchLeaders = () => (dispatch) => {
-    
+export const fetchLeaders = () => (dispatch) => {    
     dispatch(leadersLoading());
 
     return fetch(baseUrl + 'leaders')
@@ -150,4 +148,23 @@ export const postFavorite = (dishId) => (dispatch) => {
 export const addFavorite = (dishId) => ({
     type: ActionTypes.ADD_FAVORITE,
     payload: dishId
+});
+
+export const postComment = (dishId, rating, author, comment) => (dispatch) => {
+    const newComment = {
+        dishId: dishId,
+        rating: rating,
+        author: author,
+        comment: comment
+    }
+    newComment.date = new Date().toISOString(); 
+
+    setTimeout(() => {
+        dispatch(addComment(newComment));
+    }, 2000);
+}
+
+export const addComment = (comment) => ({
+    type: ActionTypes.ADD_COMMENT,
+    payload: comment
 });

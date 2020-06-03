@@ -26,6 +26,7 @@ import Home from './HomeComponent';
 import About from './AboutComponent';
 import Contact from './ContactComponent';
 import Reservation from './ReservationComponent';
+import Favorites from './FavoriteComponent';
 
 const MenuNavigator = createStackNavigator();
 
@@ -190,6 +191,38 @@ function ReservationNavigatorScreen() {
     );
 }
 
+const FavoritesNavigator = createStackNavigator();
+
+function FavoritesNavigatorScreen() {
+    return(
+        <FavoritesNavigator.Navigator
+            initialRouteName='Favorites'
+            screenOptions={{
+                headerStyle: {
+                    backgroundColor: '#512DA8'
+                },
+                headerTintColor: '#fff',
+                headerTitleStyle: {
+                    color: '#fff'            
+                }
+            }}
+        >
+            <FavoritesNavigator.Screen
+                name='Favorites'
+                component={Favorites}
+                options={({ navigation }) => ({
+                    headerTitle: 'My Favorites',
+                    headerLeft: () => (
+                        <Icon name='menu' size={24} color='white' onPress={() => {
+                            navigation.toggleDrawer()
+                        }}/>
+                    )
+                })}
+            />
+        </FavoritesNavigator.Navigator>
+    );
+}
+
 const CustomDrawerContentComponent = (props) => (
     <SafeAreaProvider>
         <ScrollView>
@@ -262,6 +295,17 @@ function MainNavigatorScreen() {
                     drawerLabel: 'Contact Us',
                     drawerIcon: ({ tintColor }) => (
                         <Icon name='address-card' type='font-awesome' size={22} color={tintColor} />
+                    )
+                }}
+            />
+            <MainNavigator.Screen
+                name='Favorites'
+                component={FavoritesNavigatorScreen}
+                options={{
+                    headerTitle: 'My Favorites',
+                    drawerLabel: 'My Favorites',
+                    drawerIcon: ({ tintColor }) => (
+                        <Icon name='heart' type='font-awesome' size={24} color={tintColor} />
                     )
                 }}
             />

@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     formItem: {
         flex: 1
     },
-    moda: {
+    modal: {
         justifyContent: 'center',
         margin: 20,
     },
