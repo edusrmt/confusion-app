@@ -219,6 +219,11 @@ function FavoritesNavigatorScreen() {
                     )
                 })}
             />
+            <MenuNavigator.Screen
+                name='Dishdetail'
+                component={Dishdetail}
+                options={{ headerTitle: 'Dish Details'}}
+            />
         </FavoritesNavigator.Navigator>
     );
 }
