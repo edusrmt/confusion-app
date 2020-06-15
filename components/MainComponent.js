@@ -27,6 +27,7 @@ import About from './AboutComponent';
 import Contact from './ContactComponent';
 import Reservation from './ReservationComponent';
 import Favorites from './FavoriteComponent';
+import Login from './LoginComponent';
 
 const MenuNavigator = createStackNavigator();
 
@@ -219,12 +220,44 @@ function FavoritesNavigatorScreen() {
                     )
                 })}
             />
-            <MenuNavigator.Screen
+            <FavoritesNavigator.Screen
                 name='Dishdetail'
                 component={Dishdetail}
                 options={{ headerTitle: 'Dish Details'}}
             />
         </FavoritesNavigator.Navigator>
+    );
+}
+
+const LoginNavigator = createStackNavigator();
+
+function LoginNavigatorScreen() {
+    return(
+        <LoginNavigator.Navigator
+            initialRouteName='Login'
+            screenOptions={{
+                headerStyle: {
+                    backgroundColor: '#512DA8'
+                },
+                headerTintColor: '#fff',
+                headerTitleStyle: {
+                    color: '#fff'            
+                }
+            }}
+        >
+            <LoginNavigator.Screen
+                name='Login'
+                component={Login}
+                options={({ navigation }) => ({
+                    headerTitle: 'Login',
+                    headerLeft: () => (
+                        <Icon name='menu' size={24} color='white' onPress={() => {
+                            navigation.toggleDrawer()
+                        }}/>
+                    )
+                })}
+            />
+        </LoginNavigator.Navigator>
     );
 }
 
@@ -258,7 +291,19 @@ function MainNavigatorScreen() {
                 backgroundColor: '#D1C4E9'               
             }}
             drawerContent={props => <CustomDrawerContentComponent {...props} />}
+            initialRouteName='Home'
         >
+            <MainNavigator.Screen
+                name='Login'
+                component={LoginNavigatorScreen}
+                options={{
+                    headerTitle: 'Login', 
+                    drawerLabel: 'Login',
+                    drawerIcon: ({ tintColor }) => (
+                        <Icon name='sign-in' type='font-awesome' size={24} color={tintColor} />
+                    )
+                }}
+            />
             <MainNavigator.Screen
                 name='Home'
                 component={HomeNavigatorScreen}
@@ -269,7 +314,7 @@ function MainNavigatorScreen() {
                         <Icon name='home' type='font-awesome' size={24} color={tintColor} />
                     )
                 }}
-                />
+            />
             <MainNavigator.Screen
                 name='About'
                 component={AboutNavigatorScreen}

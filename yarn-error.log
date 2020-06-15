@@ -1,5 +1,5 @@
 Arguments: 
-  /home/edusrmt/.nvm/versions/node/v12.16.3/bin/node /home/edusrmt/Documentos/.yarn/releases/yarn-1.22.4.js add @react-native-community/async-storage
+  /home/edusrmt/.nvm/versions/node/v12.16.3/bin/node /home/edusrmt/Documentos/.yarn/releases/yarn-1.22.4.js add redux-persist
 
 PATH: 
   /home/edusrmt/.nvm/versions/node/v12.16.3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
@@ -32,6 +32,7 @@ npm manifest:
       "@react-navigation/native": "^5.3.0",
       "@react-navigation/stack": "^5.3.3",
       "expo": "~37.0.3",
+      "expo-secure-store": "~8.1.0",
       "react": "~16.9.0",
       "react-dom": "~16.9.0",
       "react-native": "https://github.com/expo/react-native/archive/sdk-37.0.1.tar.gz",
@@ -2480,6 +2481,11 @@ Lockfile:
     version "8.1.0"
     resolved "https://registry.yarnpkg.com/expo-permissions/-/expo-permissions-8.1.0.tgz#a7f2ee91ba76ce3a467e7b10adaa9ca5201b226f"
     integrity sha512-QBHD+1J9+sGFnhoEGzMRchPweeEE0OJ9ehG/0l1BMRBA7qsLS9vRC1FTJ55NwjI0Kr4RTha9r6ZX1kZHT09f/w==
+  
+  expo-secure-store@~8.1.0:
+    version "8.1.0"
+    resolved "https://registry.yarnpkg.com/expo-secure-store/-/expo-secure-store-8.1.0.tgz#1dcc4705c5264c828592a83842b8be8bbfb5f77f"
+    integrity sha512-EjCx9M2nH7iW3eNOjXl0I7oPypI0es6OStZakimR2iD8riLZp9LYHTj+39Iuz2o1m3OKi+bpwr3cHL52DxcDnA==
   
   expo-sqlite@~8.1.0:
     version "8.1.0"
