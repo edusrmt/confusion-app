@@ -4,6 +4,7 @@ import DatePicker from 'react-native-datepicker';
 import * as Animatable from 'react-native-animatable';
 import { Notifications } from 'expo';
 import * as Permissions from 'expo-permissions';
+import * as Calendar from 'expo-calendar';
 
 class Reservation extends Component {
     constructor(props) {
@@ -15,7 +16,43 @@ class Reservation extends Component {
         }
     }
 
-    handleReservation() {
+    async obtainCalendarPermission () {
+        let permission = await Permissions.getAsync(Permissions.CALENDAR);
+
+        if (permission.status !== 'granted') {
+            permission = await Permissions.askAsync(Permissions.CALENDAR);
+
+            if (permission.status !== 'granted') {
+                Alert.alert('Permission not granted to access calendar!');
+            }
+        }
+
+        return permission;
+    }
+
+    async getDefaultCalendarSource () {
+        await this.obtainCalendarPermission();
+
+        const calendars = await Calendar.getCalendarsAsync();
+        const defaultCalendars = calendars.filter(each => each.name === 'My calendar');
+        return defaultCalendars[0];
+    }
+
+    async addReservationToCalendar (date) {
+        const defaultCalendar = await this.getDefaultCalendarSource();
+        const startTime = new Date(Date.parse(date));
+        const endTime = new Date(Date.parse(date) + 7200000);
+
+        await Calendar.createEventAsync(defaultCalendar.id, {
+            title: 'Con Fusion Table Reservation',
+            startDate: startTime,
+            endDate: endTime,
+            location: '121, Clear Water Bay Road, Clear Water Bay, Kowloon, Hong Kong',
+            timeZone: 'Asia/Hong_Kong'
+        });
+    }
+
+    async handleReservation() {
         Alert.alert(
             'Your Reservation OK?',
             'Number of Guests: ' + this.state.guests +
@@ -31,6 +68,7 @@ class Reservation extends Component {
                     text: 'OK',
                     onPress: () => {
                         this.presentLocalNotification(this.state.date);
+                        this.addReservationToCalendar(this.state.date);
                         this.resetForm();
                     }
                 }
